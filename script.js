@@ -36,11 +36,22 @@ const contador = setInterval(function () {
 
 const formulario = document.querySelector("form");
 
-formulario.addEventListener("submit", function (e) {
+formulario.addEventListener("submit", async function (e) {
 
     e.preventDefault();
 
-    const nome = formulario.querySelector('input[type="text"]').value;
+    const dados = {
+        nome: formulario.querySelector('input[placeholder="Nome Completo"]').value,
+        whatsapp: formulario.querySelector('input[placeholder="WhatsApp"]').value,
+        ingressos: formulario.querySelector('input[type="number"]').value
+    };
+
+    try {
+
+        await fetch("https://script.google.com/macros/s/AKfycbznDL_vtjVnQ3WB6klJjlrtJHAI1Zh5uAuXMUVpgpKhyk8f5OwisXHjAQ0cUiBnk6T6QQ/exec", {
+            method: "POST",
+            body: JSON.stringify(dados)
+        });
 
     alert(
 `Obrigada pela inscrição, ${nome}!
