@@ -48,7 +48,7 @@ formulario.addEventListener("submit", async function (e) {
 
     try {
 
-        await fetch("https://script.google.com/macros/s/AKfycbznDL_vtjVnQ3WB6klJjlrtJHAI1Zh5uAuXMUVpgpKhyk8f5OwisXHjAQ0cUiBnk6T6QQ/exec", {
+        await fetch("https://script.google.com/macros/s/AKfycbz888Qkv9eRAeMmQ68x1i5tRDUM7tkqeFsBZTk41Ydcn2h7mKK9SOHVpcM5flxhkz_QrQ/exec", {
             method: "POST",
             body: JSON.stringify(dados)
         });
@@ -78,6 +78,18 @@ Segue meu comprovante de pagamento.`;
 encodeURIComponent(mensagem);
 
     window.open(url, "_blank");
+
+});
+
+formulario.reset();
+
+} catch (erro) {
+
+    console.error(erro);
+
+    alert("Erro ao enviar a inscrição. Tente novamente.");
+
+}
 
 });
 
