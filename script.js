@@ -81,18 +81,6 @@ encodeURIComponent(mensagem);
 
 });
 
-formulario.reset();
-
-} catch (erro) {
-
-    console.error(erro);
-
-    alert("Erro ao enviar a inscrição. Tente novamente.");
-
-}
-
-});
-
 
 // ===============================
 // ANIMAÇÃO AO ROLAR
