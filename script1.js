@@ -64,9 +64,6 @@ formulario.addEventListener("submit", async function(e){
 
         });
 
-        if(!resposta.ok){
-            throw new Error("Erro ao enviar");
-        }
 
         alert(`Obrigada pela inscrição, ${dados.nome}!
 
