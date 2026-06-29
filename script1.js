@@ -50,22 +50,17 @@ formulario.addEventListener("submit", async function(e){
 
     };
 
-    try{
+try {
 
-        const resposta = await fetch("https://script.google.com/macros/s/AKfycbznDL_vtjVnQ3WB6klJjlrtJHAI1Zh5uAuXMUVpgpKhyk8f5OwisXHjAQ0cUiBnk6T6QQ/exec",{
+    const resposta = await fetch("https://script.google.com/macros/s/AKfycbznDL_vtjVnQ3WB6klJjlrtJHAI1Zh5uAuXMUVpgpKhyk8f5OwisXHjAQ0cUiBnk6T6QQ/exec", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dados)
+    });
 
-            method:"POST",
-
-            headers:{
-                "Content-Type":"application/json"
-            },
-
-            body:JSON.stringify(dados)
-
-        });
-
-
-        alert(`Obrigada pela inscrição, ${dados.nome}!
+    alert(`Obrigada pela inscrição, ${dados.nome}!
 
 Agora realize o pagamento.
 
@@ -76,8 +71,7 @@ Chave:
 
 Após o pagamento envie o comprovante para a Missionária Luana.`);
 
-        const mensagem =
-`Olá Missionária Luana!
+    const mensagem = `Olá Missionária Luana!
 
 Meu nome é ${dados.nome}.
 
@@ -85,16 +79,20 @@ Acabei de realizar minha inscrição para o Chá de Mulheres - Raízes.
 
 Segue meu comprovante de pagamento.`;
 
-          const url =
-"https://wa.me/5511965502306?text=" +
-encodeURIComponent(mensagem);
+    const url =
+        "https://wa.me/5511965502306?text=" +
+        encodeURIComponent(mensagem);
 
     window.open(url, "_blank");
 
-        formulario.reset();
+    formulario.reset();
 
-    }
+} catch (erro) {
 
+    console.error(erro);
+    alert("Erro ao enviar a inscrição. Tente novamente.");
+
+}
 
 });
 
