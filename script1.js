@@ -52,7 +52,7 @@ formulario.addEventListener("submit", async function(e){
 
 try {
 
-    const resposta = await fetch("https://script.google.com/macros/s/AKfycbznDL_vtjVnQ3WB6klJjlrtJHAI1Zh5uAuXMUVpgpKhyk8f5OwisXHjAQ0cUiBnk6T6QQ/exec", {
+    const resposta = await fetch("https://script.google.com/macros/s/AKfycbzKS8cwvmxmVbYuE7sJFtwrWqJmHJg-4Kz-e-Jw0IrWu2aeD95hRn-1lmfDY7fHs_hdAg/exec", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
