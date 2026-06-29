@@ -95,13 +95,6 @@ encodeURIComponent(mensagem);
 
     }
 
-    catch(erro){
-
-        console.error(erro);
-
-        alert("Não foi possível enviar a inscrição. Tente novamente.");
-
-    }
 
 });
 
