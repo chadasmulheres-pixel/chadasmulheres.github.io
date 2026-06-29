@@ -44,10 +44,6 @@ formulario.addEventListener("submit", async function(e){
 
         whatsapp: document.querySelector('input[placeholder="WhatsApp"]').value,
 
-        email: document.querySelector('input[type="email"]').value,
-
-        cidade: document.querySelector('input[placeholder="Cidade"]').value,
-
         ingressos: document.querySelector('input[type="number"]').value
 
     };
