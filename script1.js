@@ -24,107 +24,31 @@ setInterval(() => {
 }, 1000);
 
 
-// =====================================
-// URL DO APPS SCRIPT
-// =====================================
 
-const URL =
-"https://script.google.com/macros/s/AKfycbzKS8cwvmxmVbYuE7sJFtwrWqJmHJg-4Kz-e-Jw0IrWu2aeD95hRn-1lmfDY7fHs_hdAg/exec";
-
-
-// =====================================
-// VAGAS
-// =====================================
-
-async function atualizarVagas(){
-
-    try{
-
-        const resposta = await fetch(URL);
-        const dados = await resposta.json();
-
-        const vagas = document.getElementById("vagas");
-
-        if(vagas){
-
-            vagas.innerHTML =
-            `Restam ${dados.restantes} vagas`;
-
-        }
-
-        if(dados.encerrado){
-
-            document.querySelector("button[type='submit']").disabled = true;
-
-            alert("As inscrições foram encerradas.");
-
-        }
-
-    }catch(erro){
-
-        console.log(erro);
-
-    }
-
-}
-
-atualizarVagas();
-
-
-// =====================================
+// ===============================
 // FORMULÁRIO
-// =====================================
+// ===============================
 
 const formulario = document.querySelector("form");
 
-formulario.addEventListener("submit", async (e)=>{
+formulario.addEventListener("submit", function (e) {
 
     e.preventDefault();
 
-    const nome =
-    document.querySelector('input[placeholder="Nome Completo"]').value;
+    const nome = formulario.querySelector('input[type="text"]').value;
 
-    const whatsapp =
-    document.querySelector('input[placeholder="WhatsApp"]').value;
+    alert(
+`Obrigada pela inscrição, ${nome}!
 
-    const ingressos =
-    document.querySelector('input[type="number"]').value;
+Agora realize o pagamento via PIX.
 
-    const formData = new FormData();
-
-    formData.append("nome", nome);
-    formData.append("whatsapp", whatsapp);
-    formData.append("ingressos", ingressos);
-
-    try{
-
-        const resposta = await fetch(URL,{
-
-            method:"POST",
-            body:formData
-
-        });
-
-        const resultado = await resposta.json();
-
-        if(resultado.status!="ok"){
-
-            throw new Error(resultado.mensagem);
-
-        }
-
-        alert(`Obrigada pela inscrição, ${nome}!
-
-Agora realize o pagamento.
-
-PIX
-
-Chave:
+Chave PIX:
 06583916401
 
-Após o pagamento envie o comprovante para a Missionária Luana.`);
+Após o pagamento você será direcionada para o WhatsApp da Missionária Luana.`
+);
 
-        const mensagem =
+    const mensagem =
 `Olá Missionária Luana!
 
 Meu nome é ${nome}.
@@ -133,27 +57,14 @@ Acabei de realizar minha inscrição para o Chá de Mulheres - Raízes.
 
 Segue meu comprovante de pagamento.`;
 
-        window.open(
+    const url =
+"https://wa.me/5511965502306?text=" +
+encodeURIComponent(mensagem);
 
-"https://wa.me/5511965502306?text="+encodeURIComponent(mensagem),
-
-"_blank"
-
-);
-
-        formulario.reset();
-
-        atualizarVagas();
-
-    }catch(erro){
-
-        console.error(erro);
-
-        alert("Não foi possível realizar a inscrição.");
-
-    }
+    window.open(url, "_blank");
 
 });
+
 
 
 // =====================================
